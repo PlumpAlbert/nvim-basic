@@ -33,29 +33,29 @@ M.keys = {
 	{
 		"gd",
 		function()
-			require("telescope.builtin").lsp_definitions({
+			require("telescope.builtin").lsp_definitions(require("telescope.themes").get_cursor({
 				jump_type = "vsplit",
 				reuse_win = true,
-			})
+			}))
 		end,
 		desc = "Go to declaration",
 	},
 	{
 		"gI",
 		function()
-			require("telescope.builtin").lsp_implementations({
+			require("telescope.builtin").lsp_implementations(require("telescope.themes").get_cursor({
 				jump_type = "vsplit",
 				reuse_win = true,
-			})
+			}))
 		end,
 		desc = "Go to implementation",
 	},
 	{
 		"gr",
 		function()
-			require("telescope.builtin").lsp_references({
+			require("telescope.builtin").lsp_references(require("telescope.themes").get_cursor({
 				jump_type = "vsplit",
-			})
+			}))
 		end,
 		desc = "Go to references",
 	},
