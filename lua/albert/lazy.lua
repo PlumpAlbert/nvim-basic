@@ -17,6 +17,7 @@ require("lazy").setup({
 	spec = {
 		{ "" },
 		{ import = "albert.themes" },
+		{ import = "albert.plugins.lsp" },
 		{ import = "albert.plugins" },
 	},
 	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
