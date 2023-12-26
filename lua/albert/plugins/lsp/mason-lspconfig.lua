@@ -1,3 +1,55 @@
+local function on_attach(client, bufnr)
+	local has_navic, navic = pcall(require, "nvim-navic")
+	if has_navic and client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+
+	local bind = vim.keymap.set
+
+	---@param opts table
+	local function get_opts(opts)
+		opts = opts or {}
+		return vim.tbl_extend("force", { buffer = bufnr }, opts)
+	end
+
+	bind("n", "K", function()
+		local ufo_installed, ufo = pcall(require, "ufo")
+		if ufo_installed then
+			local winid = ufo.peekFoldedLinesUnderCursor()
+			if winid then
+				return
+			end
+		end
+
+		vim.lsp.buf.hover()
+	end, get_opts({ desc = "Symbol hover" }))
+
+	bind("i", "<C-k>", vim.lsp.buf.signature_help, get_opts({ desc = "Signature help" }))
+	bind("n", "<leader>ls", vim.lsp.buf.signature_help, get_opts({ desc = "Rename symbol" }))
+
+	bind("n", "gl", vim.diagnostic.open_float, get_opts({ desc = "Diagnostics (float)" }))
+
+	bind("n", "<leader>lI", "<cmd>LspInfo<cr>", get_opts({ desc = "LSP Info" }))
+
+	bind("n", "<leader>li", "<cmd>Mason<cr>", get_opts({ desc = "Mason" }))
+
+	bind("n", "<leader>la", vim.lsp.buf.code_action, get_opts({ desc = "Code actions" }))
+
+	bind("n", "]d", vim.diagnostic.goto_next, get_opts({ desc = "Go to next diagnostic" }))
+	bind("n", "[d", vim.diagnostic.goto_prev, get_opts({ desc = "Go to previous diagnostic" }))
+
+	bind("n", "<leader>lr", vim.lsp.buf.rename, get_opts({ desc = "Rename symbol" }))
+
+	bind("n", "<leader>ld", function()
+		local installed, telescope = pcall(require, "telescope.builtin")
+		if not installed then
+			return vim.diagnostic.setloclist()
+		end
+
+		telescope.diagnostics(require("telescope.themes").get_dropdown())
+	end, get_opts({ desc = "Rename symbol" }))
+end
+
 return {
 	"williamboman/mason-lspconfig.nvim",
 	event = { "BufRead", "BufNewFile" },
@@ -23,21 +75,26 @@ return {
 				function(server_name)
 					lspconfig[server_name].setup({
 						capabilities = capabilities,
+						on_attach = on_attach,
 					})
 				end,
 				lua_ls = function()
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
+						on_attach = on_attach,
 						settings = {
 							Lua = {
-								runtime = { version = "LuaJIT" },
-							},
-							diagnostics = {
-								globals = { "vim" },
-							},
-							workspace = {
-								library = {
-									vim.env.VIMRUNTIME,
+								runtime = {
+									version = "LuaJIT",
+									path = vim.split(package.path, ";"),
+								},
+								diagnostics = {
+									globals = { "vim" },
+								},
+								workspace = {
+									library = {
+										vim.env.VIMRUNTIME,
+									},
 								},
 							},
 						},
