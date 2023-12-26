@@ -1,6 +1,6 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufWritePre" },
+	event = { "BufReadPre", "BufNewFile" },
 	cmd = "ConformInfo",
 	keys = {
 		{
@@ -11,7 +11,7 @@ return {
 					lsp_fallback = true,
 				})
 			end,
-			mode = "n",
+			mode = { "n", "v" },
 			desc = "Format file",
 		},
 	},
@@ -28,7 +28,8 @@ return {
 
 		require("conform").setup(vim.tbl_extend("force", opts, {
 			format_on_save = {
-				timeout_ms = 350,
+				async = false,
+				timeout_ms = 1000,
 				lsp_fallback = true,
 			},
 			formatters_by_ft = formatters_by_ft,
