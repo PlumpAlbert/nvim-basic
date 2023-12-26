@@ -1,12 +1,11 @@
 return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
-	name = "mason-installer",
 	opts = function(_, opts)
 		opts = opts or {}
 		local ensure_installed = vim.list_extend({
-			'lua-language-server',
-			'luacheck',
-			'stylua'
+			"lua-language-server",
+			"luacheck",
+			"stylua",
 		}, opts.ensure_installed or {})
 
 		return {
@@ -14,7 +13,7 @@ return {
 			auto_update = true,
 			run_on_start = true,
 			start_delay = 1000,
-			debounce_hours = 6
+			debounce_hours = 6,
 		}
-	end
+	end,
 }
