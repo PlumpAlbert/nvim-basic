@@ -24,21 +24,52 @@ local function on_attach(client, bufnr)
 		vim.lsp.buf.hover()
 	end, get_opts({ desc = "Symbol hover" }))
 
-	bind("i", "<C-k>", vim.lsp.buf.signature_help, get_opts({ desc = "Signature help" }))
-	bind("n", "<leader>ls", vim.lsp.buf.signature_help, get_opts({ desc = "Rename symbol" }))
+	bind(
+		"i",
+		"<C-k>",
+		vim.lsp.buf.signature_help,
+		get_opts({ desc = "Signature help" })
+	)
+	bind(
+		"n",
+		"<leader>ls",
+		vim.lsp.buf.signature_help,
+		get_opts({ desc = "Rename symbol" })
+	)
 
-	bind("n", "gl", vim.diagnostic.open_float, get_opts({ desc = "Diagnostics (float)" }))
+	bind(
+		"n",
+		"gl",
+		vim.diagnostic.open_float,
+		get_opts({ desc = "Diagnostics (float)" })
+	)
 
-	bind("n", "<leader>lI", "<cmd>LspInfo<cr>", get_opts({ desc = "LSP Info" }))
+	bind(
+		"n",
+		"<leader>la",
+		vim.lsp.buf.code_action,
+		get_opts({ desc = "Code actions" })
+	)
 
-	bind("n", "<leader>li", "<cmd>Mason<cr>", get_opts({ desc = "Mason" }))
+	bind(
+		"n",
+		"]d",
+		vim.diagnostic.goto_next,
+		get_opts({ desc = "Go to next diagnostic" })
+	)
+	bind(
+		"n",
+		"[d",
+		vim.diagnostic.goto_prev,
+		get_opts({ desc = "Go to previous diagnostic" })
+	)
 
-	bind("n", "<leader>la", vim.lsp.buf.code_action, get_opts({ desc = "Code actions" }))
-
-	bind("n", "]d", vim.diagnostic.goto_next, get_opts({ desc = "Go to next diagnostic" }))
-	bind("n", "[d", vim.diagnostic.goto_prev, get_opts({ desc = "Go to previous diagnostic" }))
-
-	bind("n", "<leader>lr", vim.lsp.buf.rename, get_opts({ desc = "Rename symbol" }))
+	bind(
+		"n",
+		"<leader>lr",
+		vim.lsp.buf.rename,
+		get_opts({ desc = "Rename symbol" })
+	)
 
 	bind("n", "<leader>ld", function()
 		local installed, telescope = pcall(require, "telescope.builtin")
