@@ -1,5 +1,4 @@
 return {
-	{ "folke/lazy.nvim", version = "*" },
 	{
 		"plumpalbert/nvim-basic",
 		priority = 10000,
@@ -8,6 +7,7 @@ return {
 		config = true,
 		version = "*",
 	},
+	{ "folke/lazy.nvim", version = "*" },
 	{ import = "nvim-basic.plugins.themes" },
 	{ import = "nvim-basic.plugins.lsp" },
 }
