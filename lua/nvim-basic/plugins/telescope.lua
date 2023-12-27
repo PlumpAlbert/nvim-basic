@@ -19,43 +19,53 @@ M.keys = {
 	{
 		"<leader><space>",
 		function()
-			require("telescope.builtin").find_files(require("telescope.themes").get_dropdown())
+			require("telescope.builtin").find_files(
+				require("telescope.themes").get_dropdown()
+			)
 		end,
 		desc = "Find file",
 	},
 	{
 		"<leader>/",
 		function()
-			require("telescope.builtin").live_grep(require("telescope.themes").get_dropdown())
+			require("telescope.builtin").live_grep(
+				require("telescope.themes").get_dropdown()
+			)
 		end,
 		desc = "Find word",
 	},
 	{
 		"gd",
 		function()
-			require("telescope.builtin").lsp_definitions(require("telescope.themes").get_cursor({
-				jump_type = "vsplit",
-				reuse_win = true,
-			}))
+			require("telescope.builtin").lsp_definitions(
+				require("telescope.themes").get_cursor({
+					jump_type = "vsplit",
+					reuse_win = true,
+				})
+			)
 		end,
 		desc = "Go to declaration",
 	},
 	{
 		"gI",
 		function()
-			require("telescope.builtin").lsp_implementations(require("telescope.themes").get_cursor({
-				jump_type = "vsplit",
-				reuse_win = true,
-			}))
+			require("telescope.builtin").lsp_implementations(
+				require("telescope.themes").get_cursor({
+					jump_type = "vsplit",
+					reuse_win = true,
+				})
+			)
 		end,
 		desc = "Go to implementation",
 	},
 	{
 		"gr",
 		function()
-			require("telescope.builtin").lsp_references(require("telescope.themes").get_cursor({
-				jump_type = "vsplit",
-			}))
+			require("telescope.builtin").lsp_references(
+				require("telescope.themes").get_cursor({
+					jump_type = "vsplit",
+				})
+			)
 		end,
 		desc = "Go to references",
 	},
