@@ -7,11 +7,10 @@ return {
 		"hrsh7th/cmp-path",
 		"L3MON4D3/LuaSnip",
 	},
-	config = true,
-	opts = function()
+	config = function(_, opts)
 		local cmp = require("cmp")
 
-		return {
+		cmp.setup(vim.tbl_deep_extend("force", {
 			sources = {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
@@ -26,6 +25,6 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
-		}
+		}, opts or {}))
 	end,
 }
