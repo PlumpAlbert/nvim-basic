@@ -131,7 +131,7 @@ return {
 								},
 								workspace = {
 									library = {
-										vim.env.VIMRUNTIME,
+										vim.env.VIMRUNTIME .. "/lua",
 									},
 								},
 							},
