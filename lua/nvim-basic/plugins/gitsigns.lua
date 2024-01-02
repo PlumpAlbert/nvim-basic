@@ -1,4 +1,12 @@
 local function on_attach(bufnr)
+	local has_which_key, wkey = pcall(require, "which-key")
+
+	if has_which_key then
+		wkey.register({
+			["<leader>g"] = { name = "+GIT" },
+		})
+	end
+
 	local gs = package.loaded.gitsigns
 
 	function opts(o)
@@ -66,12 +74,27 @@ local function on_attach(bufnr)
 		opts({ desc = "Reset buffer" })
 	)
 	--#endregion
+
+	--#region preview
+	vim.keymap.set("n", "<leader>gp", function()
+		gs.preview_hunk()
+	end, opts({ desc = "Preview hunk" }))
+
+	vim.keymap.set("n", "<leader>gd", function()
+		gs.diffthis()
+	end, opts({ desc = "Diff this" }))
+
+	vim.keymap.set("n", "<leader>gb", function()
+		gs.blame_line({ full = true, ignore_whitespace = true })
+	end, opts({ desc = "Blame line" }))
+	--#endregion
 end
 
 return {
 	"lewis6991/gitsigns.nvim",
 	config = function(_, opts)
 		require("gitsigns").setup(vim.tbl_deep_extend("force", {
+			on_attach = on_attach,
 			signs = {
 				add = { text = "│" },
 				change = { text = "│" },
