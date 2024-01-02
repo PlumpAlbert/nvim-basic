@@ -31,7 +31,7 @@ return {
 					reveal_force_cwd = true,
 				})
 			end,
-			{ desc = "Open file explorer" },
+			desc = "Open file explorer",
 		},
 	},
 	config = function(_, opts)
