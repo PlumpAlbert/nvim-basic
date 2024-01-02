@@ -1,6 +1,7 @@
 return {
 	"kevinhwang91/nvim-ufo",
 	event = { "BufRead", "BufNewFile" },
+	enabled = true,
 	dependencies = { "kevinhwang91/promise-async" },
 	init = function()
 		vim.o.foldcolumn = "1"
@@ -8,6 +9,29 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 	end,
+	keys = {
+		{
+			"zM",
+			function()
+				require("ufo").closeAllFolds()
+			end,
+			desc = "Close all folds",
+		},
+		{
+			"zm",
+			function()
+				require("ufo").closeAllFolds()
+			end,
+			desc = "Close all folds",
+		},
+		{
+			"zr",
+			function()
+				require("ufo").openAllFolds()
+			end,
+			desc = "Open all folds",
+		},
+	},
 	config = function()
 		require("ufo").setup({
 			open_fold_hl_timeout = 150,
