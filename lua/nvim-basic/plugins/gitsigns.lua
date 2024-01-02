@@ -9,7 +9,7 @@ local function on_attach(bufnr)
 
 	local gs = package.loaded.gitsigns
 
-	function opts(o)
+	local function opts(o)
 		return vim.tbl_extend("force", { buffer = bufnr }, o or {})
 	end
 
