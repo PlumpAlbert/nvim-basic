@@ -1,3 +1,5 @@
+local VERSION = vim.version()
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -40,3 +42,12 @@ vim.opt.splitkeep = "cursor"
 
 vim.opt.langmap =
 	"ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\\"ZXCVBNM<>"
+
+-- use builtin folding for neovim >= 0.10.0
+if VERSION.api_level >= 12 then
+	vim.wo.foldlevel = 99
+	vim.wo.foldenable = true
+	vim.wo.foldmethod = "expr"
+	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+	vim.wo.foldtext = "v:lua.vim.treesitter.foldtext()"
+end
