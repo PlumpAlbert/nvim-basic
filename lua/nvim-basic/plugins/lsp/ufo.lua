@@ -1,7 +1,8 @@
 return {
 	"kevinhwang91/nvim-ufo",
+	-- disable for neovim 0.10.0+
+	enabled = vim.version().api_level < 12,
 	event = { "BufRead", "BufNewFile" },
-	enabled = true,
 	dependencies = { "kevinhwang91/promise-async" },
 	init = function()
 		vim.o.foldcolumn = "1"
