@@ -1,7 +1,16 @@
 local function on_attach(client, bufnr)
-	local has_navic, navic = pcall(require, "nvim-navic")
-	if has_navic and client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
+	if client.server_capabilities.documentSymbolProvider then
+		local has_navic, navic = pcall(require, "nvim-navic")
+		if has_navic then
+			navic.attach(client, bufnr)
+		end
+	end
+
+	local has_which_key, wkey = pcall(require, "which-key")
+	if has_which_key then
+		wkey.register({
+			["<leader>l"] = { name = "+LSP" },
+		})
 	end
 
 	local bind = vim.keymap.set
