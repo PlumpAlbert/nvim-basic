@@ -10,4 +10,5 @@ return {
 	{ "folke/lazy.nvim", version = "*" },
 	{ import = "nvim-basic.plugins.themes" },
 	{ import = "nvim-basic.plugins.lsp" },
+	{ import = "nvim-basic.plugins.mini" },
 }
