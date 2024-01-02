@@ -89,8 +89,7 @@ return {
 		"williamboman/mason.nvim",
 		"neovim/nvim-lspconfig",
 	},
-	config = true,
-	opts = function()
+	config = function()
 		local lspconfig = require("lspconfig")
 		local ensure_installed = { "lua_ls" }
 
@@ -100,7 +99,7 @@ return {
 			lineFoldingOnly = true,
 		}
 
-		return {
+		require("mason-lspconfig").setup({
 			ensure_installed = ensure_installed,
 			handlers = {
 				function(server_name)
@@ -116,7 +115,6 @@ return {
 						settings = {
 							Lua = {
 								runtime = {
-									version = "LuaJIT",
 									path = vim.split(package.path, ";"),
 								},
 								diagnostics = {
@@ -132,6 +130,6 @@ return {
 					})
 				end,
 			},
-		}
+		})
 	end,
 }
