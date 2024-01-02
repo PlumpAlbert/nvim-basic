@@ -1,3 +1,5 @@
+require("nvim-basic").setup()
+
 return {
 	{
 		"plumpalbert/nvim-basic",
