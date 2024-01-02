@@ -27,6 +27,13 @@ return {
 		{
 			"zr",
 			function()
+				require("ufo").openFoldsExceptKinds({ "imports", "comment" })
+			end,
+			desc = "Open all except comments and imports",
+		},
+		{
+			"zR",
+			function()
 				require("ufo").openAllFolds()
 			end,
 			desc = "Open all folds",
