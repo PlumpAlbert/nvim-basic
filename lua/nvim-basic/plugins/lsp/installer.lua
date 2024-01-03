@@ -2,7 +2,6 @@ return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
 	config = function(_, opts)
 		opts = opts or {}
-		vim.notify("[mason-tool-installer] opts: " .. vim.inspect(opts))
 		local ensure_installed = vim.list_extend({
 			"lua-language-server",
 			"luacheck",
