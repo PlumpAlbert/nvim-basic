@@ -56,6 +56,7 @@ return {
 					hide_by_name = {
 						".venv",
 						"node_modules",
+						".git",
 					},
 					always_show = {
 						".gitignore",
