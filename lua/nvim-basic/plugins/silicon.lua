@@ -41,8 +41,7 @@ return {
 			roundCorner = true,
 			windowControls = true,
 			lineNumber = true,
-			font = vim.fn.has("macunix") == 1 and "monospace"
-				or "Iosevka Nerd Font",
+			font = vim.fn.has("macunix") == 1 and "monospace" or "Consolas",
 			lineOffset = 1,
 			linePad = 0,
 
