@@ -16,10 +16,11 @@ require("nvim-basic.options")
 require("lazy").setup({
 	spec = {
 		{ import = "nvim-basic.plugins" },
+		{ "plumpalbert/nvim-typescript", import = "plump-typescript" },
 	},
 	lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
 	install = { colorscheme = { "onedark", "habamax" } },
-	checker = { enabled = true }, -- automatically check for plugin updates
+	checker = { enabled = true, notify = false }, -- automatically check for plugin updates
 	performance = {
 		rtp = {
 			-- disable some rtp plugins
