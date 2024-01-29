@@ -1,3 +1,4 @@
+-- vim:ft=lua:ts=4
 local function on_attach(client, bufnr)
 	if client.server_capabilities.documentSymbolProvider then
 		local has_navic, navic = pcall(require, "nvim-navic")
@@ -118,20 +119,26 @@ return {
 					})
 				end,
 				lua_ls = function()
+					local runtime = vim.split(package.path, ";")
+					if vim.fn.has('macunix') then
+						runtime[#runtime+1] = '/usr/share/awesome/lib'
+					end
+
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
 						on_attach = on_attach,
 						settings = {
 							Lua = {
 								runtime = {
-									path = vim.split(package.path, ";"),
+									path = runtime,
 								},
 								diagnostics = {
-									globals = { "vim" },
+									globals = { "vim", "awesome" },
 								},
 								workspace = {
 									library = {
 										vim.env.VIMRUNTIME .. "/lua",
+										'/usr/share/awesome/lib'
 									},
 								},
 							},
